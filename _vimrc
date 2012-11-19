@@ -97,6 +97,12 @@ setlocal indentexpr=GetGooglePythonIndent(v:lnum)
 
 let s:maxoff = 50 " maximum number of lines to look backwards.
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MISC KEY MAPS
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+imap <c-c> <esc>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " INDENT PYTHON LIKE GOOGLE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -171,7 +177,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Command-T and Powerline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("unix")
+if has("unix") || has("macunix")
     " Powerline
     let g:Powerline_symbols = 'fancy'
 
@@ -195,7 +201,11 @@ if has("gui_running")
 
     let g:molokai_original=0
     colorscheme molokai
-    set guifont=Ubuntu\ Mono\ for\ Powerline\ 11,Consolas:h10:cANSI
+    if has("macunix")
+        set guifont=Menlo\ Regular\ for\ Powerline:h11
+    else
+        set guifont=Ubuntu\ Mono\ for\ Powerline\ 11,Consolas:h10:cANSI
+    endif
     set go-=T
     set columns=100
     set lines=55
