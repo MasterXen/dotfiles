@@ -35,7 +35,7 @@ set hlsearch
 " make searches case-sensitive only if they contain upper-case characters
 set ignorecase smartcase
 set cursorline
-set winwidth=85 " minimum buffer width, including line numbers
+set winwidth=90 " minimum buffer width, including line numbers
 set switchbuf=useopen
 
 
