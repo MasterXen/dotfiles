@@ -1,9 +1,11 @@
 call pathogen#infect()
+runtime! plugin/sensible.vim
 
 " Basics 
 set nocompatible
 set hidden " allow unsaved background buffers and remember marks/undo for them
 set history=10000 " remember more commands and search history
+set shell=sh " make plugins not break when I'm using a non-posix shell
 
 set noexrc
 set background=dark
@@ -28,7 +30,7 @@ set whichwrap=b,s,<,>,~,[,]
 set fileformats=unix,dos " Set unix line endings as the default
 
 "Vim UI
-"set laststatus=2
+set laststatus=2
 set showmatch
 set incsearch
 set hlsearch
@@ -86,9 +88,8 @@ set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 augroup vimrcEx
     " Clear all autocmds in the group
     autocmd!
-    autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
+    autocmd FileType ruby,haml,eruby,yaml,html,javascript,coffee,sass,cucumber set ai sw=2 sts=2 et
     autocmd FileType python set ts=8 sw=4 sts=4 et
-    autocmd FileType coffeescript set sw=2 et
     autocmd FileType aspx set sw=4 ts=4 net
     autocmd FileType xml set sw=4 ts=4 sts=4 et
 augroup END
@@ -102,6 +103,9 @@ let s:maxoff = 50 " maximum number of lines to look backwards.
 " MISC KEY MAPS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 imap <c-c> <esc>
+map <leader>v :vsplit<cr>
+map <leader>s :split<cr>
+map <leader>e :NERDTreeToggle<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " INDENT PYTHON LIKE GOOGLE
@@ -149,20 +153,6 @@ inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" RENAME CURRENT FILE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
-endfunction
-map <leader>n :call RenameFile()<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("win32")
@@ -177,18 +167,22 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Command-T and Powerline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("unix") || has("macunix")
+if has("unix")
     " Powerline
     let g:Powerline_symbols = 'fancy'
+    " New version of powerline throws all sorts of syntax errors. :(
+    " set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
     " Command-T
     let g:CommandTMaxHeight=15
-    map <leader> f :CommandTFlush<CR>
+    map <leader>f :CommandTFlush<CR>
     if &term =~ "xterm" || &term =~ "screen"
         let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
         let g:CommandTSelectNextMap = ['<C-n>', '<C-j>', '<ESC>0B']
         let g:CommandTSelectPrevMap = ['<C-p>', '<C-k>', '<ESC>0A']
     endif
+
+    set wildignore+=node_modules/**,public/js/**
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -199,7 +193,8 @@ let g:pyflakes_use_quickfix = 1 "set to 0 to disable
 
 if has("gui_running")
 
-    let g:molokai_original=0
+    set guioptions=ce
+    let g:molokai_original=1
     colorscheme molokai
     if has("macunix")
         set guifont=Menlo\ Regular\ for\ Powerline:h11
@@ -207,8 +202,8 @@ if has("gui_running")
         set guifont=Ubuntu\ Mono\ for\ Powerline\ 11,Consolas:h10:cANSI
     endif
     set go-=T
-    set columns=100
-    set lines=55
+    set columns=190
+    set lines=78
 else
     set background=dark
     set t_Co=256
