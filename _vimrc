@@ -155,14 +155,14 @@ inoremap <s-tab> <c-n>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CtrlP
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if has("win32")
-    set runtimepath^=~/vimfiles/bundle/ctrlp.vim
-    nnoremap <silent> <Leader>t :CtrlP<CR>
-    nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
-    let g:ctrlp_working_path_mode = 2
-    set wildignore+=tmp\*,*.swp,*.zip,*.exe,*.pyc,env\*    " Windows
-    let g:ctrlp_match_window_reversed = 1 " Match Command-t behavior
-endif
+"if has("win32")
+set runtimepath^=~/vimfiles/bundle/ctrlp.vim
+nnoremap <silent> <Leader>t :CtrlP<CR>
+nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+let g:ctrlp_working_path_mode = 2
+set wildignore+=tmp\*,*.swp,*.zip,*.exe,*.pyc,env\*    " Windows
+let g:ctrlp_match_window_reversed = 1 " Match Command-t behavior
+"endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Command-T and Powerline
@@ -174,15 +174,16 @@ if has("unix")
     " set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
     " Command-T
-    let g:CommandTMaxHeight=15
-    map <leader>f :CommandTFlush<CR>
-    if &term =~ "xterm" || &term =~ "screen"
-        let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
-        let g:CommandTSelectNextMap = ['<C-n>', '<C-j>', '<ESC>0B']
-        let g:CommandTSelectPrevMap = ['<C-p>', '<C-k>', '<ESC>0A']
-    endif
+    "let g:CommandTMaxHeight=15
+    "map <leader>f :CommandTFlush<CR>
+    "if &term =~ 'xterm" || &term =~ 'screen" " swapped out quotes to comment
+    "out
+    "    let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
+    "    let g:CommandTSelectNextMap = ['<C-n>', '<C-j>', '<ESC>0B']
+    "    let g:CommandTSelectPrevMap = ['<C-p>', '<C-k>', '<ESC>0A']
+    "endif
 
-    set wildignore+=node_modules/**,public/js/**
+    "set wildignore+=node_modules/**,public/js/**
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

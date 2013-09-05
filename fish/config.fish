@@ -2,6 +2,7 @@
 alias git 'hub'
 alias g 'git'
 alias fish-config 'vim ~/.config/fish/config.fish'
+alias fish-reload '. ~/.config/fish/config.fish'
 alias t 'python ~/bin/t/t.py --task-dir ~/bin/t/tasks --list tasks'
 alias tmux 'tmux -2'
 
@@ -13,7 +14,9 @@ function prepend_to_path -d "Prepend the given dir to PATH if it exists and is n
         end
     end
 end
+set PATH /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 set PATH ~/bin $PATH
+set PATH ~/.rbenv/bin/ $PATH
 set PATH ~/.rbenv/shims/ $PATH
 set PATH /usr/local/share/python $PATH
 

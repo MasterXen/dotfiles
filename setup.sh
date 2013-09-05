@@ -7,6 +7,7 @@ function doIt() {
 	ln -s ~/.dotfiles/.xmodmap ~/.xmodmap
 	ln -s ~/.dotfiles/.rspec ~/.rspec
 	ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
+	ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
         mkdir ~/.vimtmp
         mkdir ~/.vimtmp/swap
         mkdir ~/.vimtmp/backup
