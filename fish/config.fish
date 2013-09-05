@@ -3,6 +3,7 @@ alias git 'hub'
 alias g 'git'
 alias fish-config 'vim ~/.config/fish/config.fish'
 alias t 'python ~/bin/t/t.py --task-dir ~/bin/t/tasks --list tasks'
+alias tmux 'tmux -2'
 
 # Path ############
 function prepend_to_path -d "Prepend the given dir to PATH if it exists and is not already in it"
