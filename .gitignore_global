@@ -1,4 +1,47 @@
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# OS X stuff
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Vim stuff
 .*.sw[a-z]
-*.un~
 Session.vim
+
+# Ruby files
+/.rbenv-version
+.bundle
+
+# Python
 *.pyc
+
+# Node
+node_modules
+
+*.un~
