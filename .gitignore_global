@@ -37,6 +37,7 @@ Session.vim
 # Ruby files
 /.rbenv-version
 .bundle
+/bin
 
 # Python
 *.pyc

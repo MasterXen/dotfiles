@@ -160,7 +160,7 @@ set runtimepath^=~/vimfiles/bundle/ctrlp.vim
 nnoremap <silent> <Leader>t :CtrlP<CR>
 nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
 let g:ctrlp_working_path_mode = 2
-set wildignore+=tmp\*,*.swp,*.zip,*.exe,*.pyc,env\*    " Windows
+set wildignore+=tmp/*,log/*,*.so,*.swp,*.zip,*.exe,*.pyc    " Windows
 let g:ctrlp_match_window_reversed = 1 " Match Command-t behavior
 "endif
 

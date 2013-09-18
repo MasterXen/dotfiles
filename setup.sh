@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
 function doIt() {
+    mkdir -p ~/.vimtmp/swap
+    mkdir -p ~/.vimtmp/backup
+    mkdir -p ~/config/fish
+    mkdir -p ~/bin
+
     ensure_link ".dotfiles/.bashrc"             ".bashrc"
     ensure_link ".dotfiles/fish"                ".config/fish"
     ensure_link ".dotfiles/_vimrc"              ".vimrc"
     ensure_link ".dotfiles/vimfiles"            ".vim"
     ensure_link ".dotfiles/.xmodmap"            ".xmodmap"
     ensure_link ".dotfiles/.rspec"              ".rspec"
-    ensure_link ".dotfiles/.tmux"               "conf ~/.tmux.nf"
+    ensure_link ".dotfiles/.tmux.conf"          ".tmux.conf"
     ensure_link ".dotfiles/.gitconfig"          ".gitconfig"
     ensure_link ".dotfiles/.gitignore_global"   ".gitignore_global"
-    mkdir ~/.vimtmp
-    mkdir ~/.vimtmp/swap
-    mkdir ~/.vimtmp/backup
 
-    mkdir ~/bin
+    ensure_link ".dotfiles/bin/colortest"       "bin/colortest"
+
     curl http://hub.github.com/standalone -sLo ~/bin/hub
     chmod +x ~/bin/hub
 }
