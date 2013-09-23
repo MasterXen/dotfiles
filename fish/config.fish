@@ -90,7 +90,7 @@ function fish_prompt
 
     echo
 
-    virtualenv_prompt
+#virtualenv_prompt
 
     if test $last_status -eq 0
         set_color white -o

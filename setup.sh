@@ -5,17 +5,18 @@ function doIt() {
     mkdir -p ~/config/fish
     mkdir -p ~/bin
 
-    ensure_link ".dotfiles/.bashrc"             ".bashrc"
-    ensure_link ".dotfiles/fish"                ".config/fish"
-    ensure_link ".dotfiles/_vimrc"              ".vimrc"
-    ensure_link ".dotfiles/vimfiles"            ".vim"
-    ensure_link ".dotfiles/.xmodmap"            ".xmodmap"
-    ensure_link ".dotfiles/.rspec"              ".rspec"
-    ensure_link ".dotfiles/.tmux.conf"          ".tmux.conf"
-    ensure_link ".dotfiles/.gitconfig"          ".gitconfig"
-    ensure_link ".dotfiles/.gitignore_global"   ".gitignore_global"
+    ensure_link ".dotfiles/.bashrc"               ".bashrc"
+    ensure_link ".dotfiles/fish"                  ".config/fish"
+    ensure_link ".dotfiles/_vimrc"                ".vimrc"
+    ensure_link ".dotfiles/vimfiles"              ".vim"
+    ensure_link ".dotfiles/.xmodmap"              ".xmodmap"
+    ensure_link ".dotfiles/.rspec"                ".rspec"
+    ensure_link ".dotfiles/.tmux.conf"            ".tmux.conf"
+    ensure_link ".dotfiles/.gitconfig"            ".gitconfig"
+    ensure_link ".dotfiles/.gitignore_global"     ".gitignore_global"
 
-    ensure_link ".dotfiles/bin/colortest"       "bin/colortest"
+    ensure_link ".dotfiles/bin/colortest"         "bin/colortest"
+    ensure_link ".dotfiles/bin/git_prompt_status" "bin/git_prompt_status"
 
     curl http://hub.github.com/standalone -sLo ~/bin/hub
     chmod +x ~/bin/hub
