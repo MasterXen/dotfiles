@@ -2,7 +2,20 @@
 alias git 'hub'
 alias g 'git'
 alias fish-config 'vim ~/.config/fish/config.fish'
+alias fish-reload '. ~/.config/fish/config.fish'
 alias t 'python ~/bin/t/t.py --task-dir ~/bin/t/tasks --list tasks'
+alias tmux 'tmux -2'
+alias be 'bundle exec'
+
+function start-dev
+    launchctl load /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist
+    launchctl load /usr/local/opt/redis/homebrew.mxcl.redis.plist
+end
+
+function end-dev
+    launchctl unload /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist
+    launchctl unload /usr/local/opt/redis/homebrew.mxcl.redis.plist
+end
 
 # Path ############
 function prepend_to_path -d "Prepend the given dir to PATH if it exists and is not already in it"
@@ -12,7 +25,9 @@ function prepend_to_path -d "Prepend the given dir to PATH if it exists and is n
         end
     end
 end
+set PATH /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 set PATH ~/bin $PATH
+set PATH ~/.rbenv/bin/ $PATH
 set PATH ~/.rbenv/shims/ $PATH
 set PATH /usr/local/share/python $PATH
 
@@ -75,7 +90,7 @@ function fish_prompt
 
     echo
 
-    virtualenv_prompt
+#virtualenv_prompt
 
     if test $last_status -eq 0
         set_color white -o
