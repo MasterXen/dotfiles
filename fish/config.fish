@@ -1,11 +1,21 @@
 # Aliases #########
 alias git 'hub'
 alias g 'git'
+alias cbr 'git currentbranch'
+alias z '~/.rbenv/shims/zeus'
 alias fish-config 'vim ~/.config/fish/config.fish'
 alias fish-reload '. ~/.config/fish/config.fish'
 alias t 'python ~/bin/t/t.py --task-dir ~/bin/t/tasks --list tasks'
 alias tmux 'tmux -2'
 alias be 'bundle exec'
+alias irc 'weechat'
+alias notify "terminal-notifier -message 'Complete' -sound 'default' -sender com.apple.Terminal"
+alias diffscope "g difftool -y -T Kaleidoscope"
+alias :w "echo 'Vim!'"
+alias :q "exit"
+alias serve-this "python -m SimpleHTTPServer"
+
+set -x jamesremote '107.170.159.229'
 
 function start-dev
     launchctl load /usr/local/opt/postgresql/homebrew.mxcl.postgresql.plist
@@ -26,10 +36,13 @@ function prepend_to_path -d "Prepend the given dir to PATH if it exists and is n
     end
 end
 set PATH /usr/local/bin /usr/sbin /usr/bin /sbin /bin
+set PATH /usr/local/Cellar/go/1.2.1/libexec/bin $PATH # OS X only
+set PATH /Applications/Android\ Studio.app/sdk/tools $PATH # OS X only
+set PATH /Applications/Android\ Studio.app/sdk/platform-tools $PATH # OS X only
 set PATH ~/bin $PATH
-set PATH ~/.rbenv/bin/ $PATH
-set PATH ~/.rbenv/shims/ $PATH
-set PATH /usr/local/share/python $PATH
+#set PATH ~/.rbenv/bin $PATH
+set PATH ~/.rbenv/shims $PATH
+#set PATH /usr/local/share/python $PATH
 
 # Prompt
 
@@ -70,6 +83,11 @@ function fish_prompt
 #z --add "$PWD"
 
     echo
+
+    
+
+    set_color 06F
+    printf (date "+$c2%H$c0:$c2%M$c0 ")
 
     set_color magenta
     printf '%s' (whoami)

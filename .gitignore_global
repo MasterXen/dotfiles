@@ -18,7 +18,6 @@
 
 # Logs and databases
 *.log
-*.sql
 *.sqlite
 
 # OS X stuff
@@ -41,6 +40,7 @@ Session.vim
 
 # Python
 *.pyc
+/venv
 
 # Node
 node_modules
