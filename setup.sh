@@ -14,6 +14,8 @@ function doIt() {
     ensure_link ".dotfiles/.tmux.conf"            ".tmux.conf"
     ensure_link ".dotfiles/.gitconfig"            ".gitconfig"
     ensure_link ".dotfiles/.gitignore_global"     ".gitignore_global"
+    ensure_link ".dotfiles/.slate.js"             ".slate.js"
+    ensure_link ".dotfiles/.pentadactyl.rc"       ".pentadactyl.rc"
 
     ensure_link ".dotfiles/bin/colortest"         "bin/colortest"
     ensure_link ".dotfiles/bin/git_prompt_status" "bin/git_prompt_status"
