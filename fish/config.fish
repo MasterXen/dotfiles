@@ -1,8 +1,6 @@
 # Aliases #########
-alias git 'hub'
-alias g 'git'
+alias g 'hub'
 alias cbr 'git currentbranch'
-alias z '~/.rbenv/shims/zeus'
 alias fish-config 'vim ~/.config/fish/config.fish'
 alias fish-reload '. ~/.config/fish/config.fish'
 alias t 'python ~/bin/t/t.py --task-dir ~/bin/t/tasks --list tasks'
@@ -27,6 +25,10 @@ function end-dev
     launchctl unload /usr/local/opt/redis/homebrew.mxcl.redis.plist
 end
 
+function mutt
+    bash --login -c 'cd ~/Desktop; /usr/local/bin/mutt' $argv;
+end
+
 # Path ############
 function prepend_to_path -d "Prepend the given dir to PATH if it exists and is not already in it"
     if test -d $argv[1]
@@ -37,8 +39,9 @@ function prepend_to_path -d "Prepend the given dir to PATH if it exists and is n
 end
 set PATH /usr/local/bin /usr/sbin /usr/bin /sbin /bin
 set PATH /usr/local/Cellar/go/1.2.1/libexec/bin $PATH # OS X only
-set PATH /Applications/Android\ Studio.app/sdk/tools $PATH # OS X only
-set PATH /Applications/Android\ Studio.app/sdk/platform-tools $PATH # OS X only
+
+set PATH ~/Library/Developer/Android/sdk/tools $PATH # OS X only
+set PATH ~/Library/Developer/Android/sdk/platform-tools $PATH # OS X only
 set PATH ~/bin $PATH
 #set PATH ~/.rbenv/bin $PATH
 set PATH ~/.rbenv/shims $PATH

@@ -54,6 +54,7 @@ set ruler
 set scrolloff=10
 set shortmess=aOstT
 set showcmd
+"set relativenumber " Show relative line numbers
 set nu! " Show line numbers
 
 " Text formatting and layout
@@ -92,17 +93,23 @@ augroup vimrcEx
     autocmd FileType python set ts=8 sw=4 sts=4 et
     autocmd FileType aspx set sw=4 ts=4 net
     autocmd FileType xml set sw=4 ts=4 sts=4 et
+    autocmd FileType make set noexpandtab sw=0 sts=0
 augroup END
+au BufRead,BufNewFile *.md set filetype=markdown
 
 setlocal indentexpr=GetGooglePythonIndent(v:lnum)
 
 let s:maxoff = 50 " maximum number of lines to look backwards.
 
+set autoread
+au CursorHold * checktime " Prompt to reload when cursor has been still for 4 seconds
+" WinEnter or BufWinEnter are also events that can be checked on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MISC KEY MAPS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 imap <c-c> <esc>
+map Y y$
 map <leader>v :vsplit<cr>
 map <leader>s :split<cr>
 map <leader>e :NERDTreeToggle<cr>
@@ -156,34 +163,43 @@ inoremap <s-tab> <c-n>
 " CtrlP
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "if has("win32")
-set runtimepath^=~/vimfiles/bundle/ctrlp.vim
-nnoremap <silent> <Leader>t :CtrlP<CR>
-nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
-let g:ctrlp_working_path_mode = 2
-set wildignore+=tmp/*,log/*,*.so,*.swp,*.zip,*.exe,*.pyc    " Windows
-let g:ctrlp_match_window_reversed = 1 " Match Command-t behavior
+"
+"set runtimepath^=~/vimfiles/bundle/ctrlp.vim
+"nnoremap <silent> <Leader>t :CtrlP<CR>
+"nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+"let g:ctrlp_working_path_mode = 2
+"set wildignore+=tmp/*,log/*,*.so,*.swp,*.zip,*.exe,*.pyc    " Windows
+"let g:ctrlp_match_window_reversed = 1 " Match Command-t behavior
+"
+"if has("macunix")
+"    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 "endif
+"
+"endif
+"
+
+" Unite
+"nnoremap <silent> <Leader>t :Unite file_rec/async<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Command-T and Powerline
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if has("unix")
     " Powerline
-    let g:Powerline_symbols = 'fancy'
+    " let g:Powerline_symbols = 'fancy'
     " New version of powerline throws all sorts of syntax errors. :(
     " set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
     " Command-T
-    "let g:CommandTMaxHeight=15
-    "map <leader>f :CommandTFlush<CR>
-    "if &term =~ 'xterm" || &term =~ 'screen" " swapped out quotes to comment
-    "out
-    "    let g:CommandTCancelMap     = ['<ESC>', '<C-c>']
-    "    let g:CommandTSelectNextMap = ['<C-n>', '<C-j>', '<ESC>0B']
-    "    let g:CommandTSelectPrevMap = ['<C-p>', '<C-k>', '<ESC>0A']
-    "endif
+    let g:CommandTMaxHeight=15
+    map <leader>f :CommandTFlush<CR>
+    if &term =~ 'xterm' || &term =~ 'screen' " swapped out quotes to comment out
+        let g:CommandTCancelMap     = ['<Esc>', '<C-c>']
+        let g:CommandTSelectNextMap = ['<C-n>', '<C-j>', '<ESC>0B']
+        let g:CommandTSelectPrevMap = ['<C-p>', '<C-k>', '<ESC>0A']
+    endif
 
-    "set wildignore+=node_modules/**,public/js/**
+    set wildignore+=node_modules/**,public/js/**
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -191,6 +207,20 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:syntastic_enable_signs=1
 let g:pyflakes_use_quickfix = 1 "set to 0 to disable
+let g:syntastic_coffee_checkers = ['coffeelint', 'coffee']
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"function! AirlineInit()
+"    let g:airline_section_a = airline#section#create(['mode']) "branch
+"    let g:airline_section_y = airline#section#create(['%P'])
+"    let g:airline_section_z = airline#section#create(['%l', ':', '%c'])
+"endfunction
+"autocmd VimEnter * call AirlineInit()
+"let g:airline#extensions#whitespace#enabled = 0
+"let g:airline#extensions#whitespace#show_message = 0
+"let g:airline#extensions#branch#enabled = 0
 
 if has("gui_running")
 
@@ -199,6 +229,8 @@ if has("gui_running")
     colorscheme molokai
     if has("macunix")
         set guifont=Menlo\ Regular\ for\ Powerline:h11
+        "let g:airline_powerline_fonts = 1
+        "let g:airline_theme = 'powerlineish'
     else
         set guifont=Ubuntu\ Mono\ for\ Powerline\ 11,Consolas:h10:cANSI
     endif
@@ -209,4 +241,6 @@ else
     set background=dark
     set t_Co=256
     colorscheme molokai
+    "let g:airline_left_sep=''
+    "let g:airline_right_sep=''
 endif
